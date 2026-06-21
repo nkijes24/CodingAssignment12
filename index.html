@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dungeon Loot Splitter Phase 4 with local persistence and external server synchronization.">
+    <meta name="author" content="Jesse Nkinsi">
+    <title>LoopSplitter Phase 4</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>Dungeon Loot Splitter Phase 4</h1>
+        <p class="intro-text">Track loot, party size, local persistence, and external server synchronization.</p>
+    </header>
+
+    <main>
+        <div class="app-grid">
+            <section class="panel setup-panel" aria-labelledby="partyHeading">
+                <h2 id="partyHeading">Party Setup</h2>
+                <div class="form-area">
+                    <div class="field-group">
+                        <label for="partySize">Party Size:</label>
+                        <input type="number" id="partySize" min="1" step="1" value="1">
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel add-panel" aria-labelledby="addLootHeading">
+                <h2 id="addLootHeading">Add Loot</h2>
+                <div class="form-area">
+                    <div class="field-group">
+                        <label for="lootName">Loot Name:</label>
+                        <input type="text" id="lootName" autocomplete="off">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="lootValue">Loot Value:</label>
+                        <input type="number" id="lootValue" min="0" step="0.01">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" min="1" step="1">
+                    </div>
+
+                    <button id="addLootButton" type="button">Add Loot</button>
+                </div>
+            </section>
+
+            <section class="panel loot-panel" aria-labelledby="lootListHeading">
+                <h2 id="lootListHeading">Loot List</h2>
+                <p id="noLootMessage">No loot added.</p>
+
+                <div class="loot-table" role="table" aria-label="Loot item table">
+                    <div class="loot-header" role="columnheader">Name</div>
+                    <div class="loot-header" role="columnheader">Value</div>
+                    <div class="loot-header" role="columnheader">Quantity</div>
+                    <div class="loot-header" role="columnheader">Remove</div>
+                    <div id="lootRows" role="rowgroup"></div>
+                </div>
+
+                <div id="totalsPanel" class="total-row hidden">
+                    Total Loot Value: <span id="totalLoot">0.00</span> gold
+                </div>
+            </section>
+
+            <section class="panel split-panel" aria-labelledby="splitLootHeading">
+                <h2 id="splitLootHeading">Split Loot</h2>
+                <p>Loot is divided by total currency value only. Individual items are not divided or redistributed.</p>
+                <button id="splitLootButton" type="button">Split Loot</button>
+                <div id="resultsSection" class="results-section hidden" aria-live="polite">
+                    Loot Per Party Member: <span id="lootPerMember">0.00</span> gold
+                </div>
+            </section>
+
+            <section class="panel sync-panel" aria-labelledby="syncHeading">
+                <h2 id="syncHeading">External Server Sync</h2>
+                <p>Use these controls to save the current validated state to the server or load previously saved server state.</p>
+                <div class="sync-controls">
+                    <button id="syncServerButton" type="button">Sync to Server</button>
+                    <button id="loadServerButton" type="button">Load from Server</button>
+                </div>
+            </section>
+
+            <section class="panel message-panel" aria-labelledby="messageHeading">
+                <h2 id="messageHeading">System Message</h2>
+                <p id="message" class="message" aria-live="polite"></p>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
